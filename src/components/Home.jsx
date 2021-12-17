@@ -83,7 +83,7 @@ export default function Home() {
             const response = await fetch('https://raw.githubusercontent.com/xdevtomix/titanic-ivan/main/server/titanic.json');
             const jsonData = await response.json();
 
-            console.log(jsonData);
+            console.log(111, jsonData);
         };
 
         fetchData();
