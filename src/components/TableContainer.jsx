@@ -3,11 +3,13 @@ import styled from "styled-components";
 import { Table, message } from 'antd';
 import { useAtom } from 'jotai';
 import { isNetworkOkAtom } from "../stores/isNetworkOk";
+import { selectedColumn as sC } from "../stores/selectedColumn";
 
 const { Column } = Table;
 
 export default function TableContainer() {
     const [isNetworkOk, /* setIsNetworkOk */] = useAtom(isNetworkOkAtom);
+    const [selectedColumn, setSelectedColumn] = useAtom(sC);
     const [tableColumns, setTableColumns] = useState([]);
     const [tableDataSource, setTableDataSource] = useState([]);
 
@@ -59,7 +61,8 @@ export default function TableContainer() {
             const response = await fetch(url);
             const jsonData = await response.json();
 
-            console.log(jsonData);
+            setSelectedColumn(jsonData);
+            
         } catch (error) {
             message.error('Network error! Please try again.');
         }
