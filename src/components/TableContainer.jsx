@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Table, Switch, message } from 'antd';
+import { Table, message } from 'antd';
+import { useAtom } from 'jotai';
+import { isNetworkOkAtom } from "../stores/isNetworkOk";
 
 const { Column } = Table;
 
-export default function Home() {
-    const [isNetworkOk, setIsNetworkOk] = useState(true);
+export default function TableContainer() {
+    const [isNetworkOk, /* setIsNetworkOk */] = useAtom(isNetworkOkAtom);
     const [tableColumns, setTableColumns] = useState([]);
     const [tableDataSource, setTableDataSource] = useState([]);
 
@@ -65,10 +67,6 @@ export default function Home() {
 
     return (
         <Container data-component="home">
-            Simulate network error: <Switch checked={!isNetworkOk} onClick={() => setIsNetworkOk(!isNetworkOk)} />
-            {isNetworkOk && 'network ok ' + isNetworkOk.toString()}
-            {!isNetworkOk && 'network not ok ' + isNetworkOk.toString()}
-
             <Table dataSource={tableDataSource}>
                 {tableColumns.map(({title, dataIndex, key}) => (
                     <Column

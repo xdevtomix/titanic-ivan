@@ -1,6 +1,7 @@
 import styled, { StyleSheetManager } from "styled-components";
 
-import Home from "./components/Home";
+import NetworkPanel from "./components/NetworkPanel";
+import TableContainer from "./components/TableContainer";
 
 import 'antd/dist/antd.css';
 
@@ -8,7 +9,8 @@ export default function App() {
   return (
     <StyleSheetManager disableVendorPrefixes>
       <Container data-component="app">
-        <Home />
+        <NetworkPanel />
+        <TableContainer />
       </Container>
     </StyleSheetManager>
   );
