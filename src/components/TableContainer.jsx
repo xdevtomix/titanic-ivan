@@ -20,8 +20,6 @@ export default function TableContainer() {
             const response = await fetch('https://raw.githubusercontent.com/xdevtomix/titanic-ivan/main/server/titanic.json');
             const jsonData = await response.json();
 
-            console.log(jsonData);
-
             setTableColumns(jsonData.result.attributes.map((column) => (
                 {
                     title: column.name,
@@ -62,7 +60,7 @@ export default function TableContainer() {
             const jsonData = await response.json();
 
             setSelectedColumn(jsonData);
-            
+
         } catch (error) {
             message.error('Network error! Please try again.');
         }

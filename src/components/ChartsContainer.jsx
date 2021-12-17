@@ -8,38 +8,62 @@ export default function ChartsContainer() {
     const [selectedColumn, /* setSelectedColumn */] = useAtom(sC);
 
     useEffect(() => {
-        if (selectedColumn === null) {
+        if (selectedColumn) {
+            let categories = [];
+            let data = [];
 
-        } else if (selectedColumn) {
-            console.log(selectedColumn);
-            const chart = window.Highcharts.chart('container', {
+            selectedColumn.topTenValuesAndCount.map(({ value, count }) => {
+                categories = [...categories, value];
+                data = [...data, count];
+            });
+
+            const options = {
                 chart: {
-                    type: selectedColumn.attributeType === 'Categorical' ? 'column' : 'histogram',
+                    type: 'column',
                 },
                 title: {
-                    text: 'Fruit Consumption'
+                    text: selectedColumn.attributeName
                 },
-
+                xAxis: {
+                    categories,
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Number of people'
+                    }
+                },
                 series: [{
-                    name: 'Jane',
-                    data: [1, 0, 4]
-                }, {
-                    name: 'John',
-                    data: [5, 7, 3]
-                }]
-            });
+                    name: 'data',
+                    data
+                }],
+            };
+
+            if (selectedColumn.attributeType === 'Numerical') {
+                options.plotOptions = {
+                    column: {
+                        pointPadding: 0,
+                        borderWidth: 0,
+                        groupPadding: 0,
+                        shadow: false
+                    }
+                };
+            }
+
+            const chart = window.Highcharts.chart('container', options);
         }
 
         return () => { };
     }, [selectedColumn]);
 
     return (
-        <Container data-component="charts-container">
-            <div id="container" style={{ width: '100%', height: '400px' }}></div>
-        </Container>
+        <Container data-component="charts-container" id="container" selectedColumn={selectedColumn} />
     );
 }
 
 const Container = styled.div`
-
+    width: 100%;
+    height: ${({ selectedColumn }) => selectedColumn ? '400px' : '0'};
+    transition: height 1000ms;
 `;
