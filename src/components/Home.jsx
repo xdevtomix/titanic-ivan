@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Table } from 'antd';
+import { Table, Switch, message } from 'antd';
+
+const { Column } = Table;
 
 export default function Home() {
+    const [isNetworkOk, setIsNetworkOk] = useState(true);
     const [tableColumns, setTableColumns] = useState([]);
     const [tableDataSource, setTableDataSource] = useState([]);
 
@@ -21,11 +24,6 @@ export default function Home() {
                     dataIndex: column.name,
                     key: column.name,
                     ellipsis: true,
-                    onHeaderCell: (column) => {
-                        return {
-                            onClick: () => fetchHeaderData(column)
-                        };
-                    }
                 }
             )));
 
@@ -54,18 +52,38 @@ export default function Home() {
             'Survived': 'survived',
         };
 
-        const response = await fetch(`https://raw.githubusercontent.com/xdevtomix/titanic-ivan/main/server/label_${fileMap[key]}.json`);
-        const jsonData = await response.json();
+        try {
+            const url = isNetworkOk ? `https://raw.githubusercontent.com/xdevtomix/titanic-ivan/main/server/label_${fileMap[key]}.json` : 'xy';
+            const response = await fetch(url);
+            const jsonData = await response.json();
 
-        console.log(jsonData);
+            console.log(jsonData);
+        } catch (error) {
+            message.error('Network error! Please try again.');
+        }
     };
 
     return (
         <Container data-component="home">
-            <Table
-                columns={tableColumns}
-                dataSource={tableDataSource}
-            />
+            Simulate network error: <Switch checked={!isNetworkOk} onClick={() => setIsNetworkOk(!isNetworkOk)} />
+            {isNetworkOk && 'network ok ' + isNetworkOk.toString()}
+            {!isNetworkOk && 'network not ok ' + isNetworkOk.toString()}
+
+            <Table dataSource={tableDataSource}>
+                {tableColumns.map(({title, dataIndex, key}) => (
+                    <Column
+                        title={title}
+                        dataIndex={dataIndex}
+                        key={key}
+                        ellipsis={true}
+                        onHeaderCell={(column) => {
+                            return {
+                                onClick:() => fetchHeaderData(column)
+                            }
+                        }}
+                    />
+                ))}
+            </Table>
         </Container>
     );
 }
