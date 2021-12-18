@@ -3,10 +3,10 @@ Used technology:
     - Create React App
     - React with hooks
     - Javascript
-    - styled components for styling
-    - jotai for shared state management
-    - ant design - Table, message
-    - highcharts
+    - Styled components for styling
+    - Jotai for shared state management
+    - Ant design - Table, message
+    - Highcharts
 
 To start the project:
 
