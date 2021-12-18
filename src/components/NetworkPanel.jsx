@@ -9,10 +9,12 @@ export default function NetworkPanel() {
 
     return (
         <Container data-component="network-panel">
-            Simulate network error: <Switch checked={!isNetworkOk} onClick={() => setIsNetworkOk(!isNetworkOk)} />
-            {isNetworkOk && 'network ok ' + isNetworkOk.toString()}
-            {!isNetworkOk && 'network not ok ' + isNetworkOk.toString()}
+            <span>Simulate network error:</span>
+             <Switch checked={!isNetworkOk} onClick={() => setIsNetworkOk(!isNetworkOk)} />
         </Container>
     );
 }
-const Container = styled.div``;
+const Container = styled.div`
+    display: flex;
+    gap: 1rem;
+`;

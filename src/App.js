@@ -1,6 +1,6 @@
 import styled, { StyleSheetManager } from "styled-components";
 
-import NetworkPanel from './components/NetworkPanel';
+import Header from "./components/Header";
 import ChartsContainer from './components/ChartsContainer';
 import TableContainer from './components/TableContainer';
 
@@ -10,12 +10,19 @@ export default function App() {
   return (
     <StyleSheetManager disableVendorPrefixes>
       <Container data-component="app">
-        <NetworkPanel />
-        <ChartsContainer />
-        <TableContainer />
+        <Header />
+        <div>
+          <TableContainer />
+          <ChartsContainer />
+        </div>
       </Container>
     </StyleSheetManager>
   );
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+
+  >div {
+    display: flex;
+  }
+`;

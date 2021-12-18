@@ -58,12 +58,23 @@ export default function ChartsContainer() {
     }, [selectedColumn]);
 
     return (
-        <Container data-component="charts-container" id="container" selectedColumn={selectedColumn} />
+        <Container data-component="charts-container" selectedColumn={selectedColumn}>
+            <h2>Chart data</h2>
+            {!selectedColumn && <span>Click on a table column header to see the data chart</span>}
+            <div id="container"></div>
+        </Container>
     );
 }
 
 const Container = styled.div`
-    width: 100%;
-    height: ${({ selectedColumn }) => selectedColumn ? '400px' : '0'};
-    transition: height 1000ms;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    >div {
+        width: 100%;
+        height: ${({ selectedColumn }) => selectedColumn ? '400px' : '0'};
+        transition: height 1000ms;
+    }
 `;

@@ -88,5 +88,5 @@ export default function TableContainer() {
 }
 
 const Container = styled.div`
-
+    width: 60%;
 `;
