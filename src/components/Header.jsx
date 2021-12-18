@@ -5,7 +5,7 @@ import NetworkPanel from './NetworkPanel';
 
 export default function Header() {
     return (
-        <Container data-component="header" data-testid="header">
+        <Container data-component="header">
             <h2>Titanic Data Analyzis</h2>
             <div>
                 <NetworkPanel />
@@ -13,7 +13,6 @@ export default function Header() {
                     <GithubFilled />
                 </GithubLink>
             </div>
-
         </Container>
     );
 }

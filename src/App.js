@@ -1,8 +1,8 @@
 import styled, { StyleSheetManager } from "styled-components";
 
 import Header from "./components/Header";
-import ChartsContainer from './components/ChartsContainer';
 import TableContainer from './components/TableContainer';
+import ChartsContainer from './components/ChartsContainer';
 
 import 'antd/dist/antd.css';
 

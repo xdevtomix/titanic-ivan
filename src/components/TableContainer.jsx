@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Table, message } from 'antd';
 import { useAtom } from 'jotai';
+
 import { isNetworkOkAtom } from "../stores/isNetworkOk";
 import { selectedColumn as sC } from "../stores/selectedColumn";
 
@@ -38,8 +39,6 @@ export default function TableContainer() {
         };
 
         fetchData();
-
-        return () => { };
     }, []);
 
     const fetchHeaderData = async (column) => {
@@ -69,7 +68,7 @@ export default function TableContainer() {
     return (
         <Container data-component="home">
             <Table dataSource={tableDataSource}>
-                {tableColumns.map(({title, dataIndex, key}) => (
+                {tableColumns.map(({ title, dataIndex, key }) => (
                     <Column
                         title={title}
                         dataIndex={dataIndex}
@@ -77,7 +76,7 @@ export default function TableContainer() {
                         ellipsis={true}
                         onHeaderCell={(column) => {
                             return {
-                                onClick:() => fetchHeaderData(column)
+                                onClick: () => fetchHeaderData(column)
                             }
                         }}
                     />

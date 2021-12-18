@@ -1,9 +1,9 @@
-import {render, fireEvent} from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
 import NetworkPanel from './NetworkPanel';
 
 describe('Network Panel Component Tests', () => {
-    
+
     test('Network switch should render', () => {
         const containerElement = render(<NetworkPanel />);
         const switchElement = containerElement.getByTestId('network-switch');
@@ -32,7 +32,7 @@ describe('Network Panel Component Tests', () => {
         const switchElement = containerElement.getByTestId('network-switch');
 
         fireEvent.click(switchElement);
-        
+
         expect(switchElement.classList.contains('ant-switch-checked')).toBe(false);
     });
 });

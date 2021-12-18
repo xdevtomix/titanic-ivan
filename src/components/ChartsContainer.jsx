@@ -53,8 +53,6 @@ export default function ChartsContainer() {
 
             const chart = window.Highcharts.chart('container', options);
         }
-
-        return () => { };
     }, [selectedColumn]);
 
     return (

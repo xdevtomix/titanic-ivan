@@ -5,7 +5,7 @@ Used technology:
     - Javascript
     - Styled components for styling
     - Jotai for shared state management
-    - Ant design - Table, message
+    - Ant design - (Table, message, Switch)
     - Highcharts
 
 To start the project:
