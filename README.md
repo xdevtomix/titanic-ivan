@@ -22,4 +22,4 @@ Usage:
 
 To see the project:
 
-    Navigate to https://titanic-ivan.vercel.app in your browser.
+    Navigate to [demo](https://titanic-ivan.vercel.app) in your browser.
