@@ -18,7 +18,7 @@ To start the project:
 Usage:
 
     1. click on the table column headers to see the charts
-    2. you can simulate network errors by turning on the switch in the top right corner
+    2. you can simulate network errors by turning on the switch in the top right corner and then clicking on the column headers
 
 To see the project:
 
